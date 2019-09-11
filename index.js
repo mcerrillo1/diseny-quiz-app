@@ -11,14 +11,16 @@ function renderLandingPage(){
     </div>
     <div class="col-8">
       <ul>
-        <li>Question: <span class="questionNumber">0</span>/10</li>
-        <li>Score: <span class="score">0</span></li>
+        <li>Question: <span class="questionNumber">${questionIndex}</span>/10</li>
+        <li>Score: <span class="score"> ${score}</span></li>
       </ul>
     </div>
   </header>
   <main role="main">
     <div class="beginQuiz">
+    <div>
       <h1>Are you a Disney Master?</h1>
+    </div>
       <button type="button" class="startButton">Let the Magic Begin!</button>
     </div>
     <div class="questionAnswerForm"></div>
@@ -27,6 +29,7 @@ function renderLandingPage(){
 
 
 function setUpQuiz (){
+    questionIndex = 0;
     renderLandingPage ()
     handleLandingPage()
 }
@@ -41,8 +44,8 @@ function renderQuestionPage(){
     </div>
     <div class="col-8">
       <ul>
-        <li>Question: <span class="questionNumber">0</span>/10</li>
-        <li>Score: <span class="score">0</span></li>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Score: <span class="score">${score}</span></li>
       </ul>
     </div>
   </header>
@@ -51,21 +54,28 @@ function renderQuestionPage(){
         <h1>${STORE [questionIndex].question} </h1>
       </div>
       <form class="questionAnswerForm">
-          <label for= "input1" >Disney Answer Selections</label>
-          <input id= "input1" type= "radio" name= "answer" ></input>
+        <div class="questionStyle">
+            <label for= "input1" >${STORE [questionIndex].answers [0]}</label>
+            <input id= "input1" type= "radio" value = "${STORE [questionIndex].answers [0]}" name= "answer" class=" ${STORE[questionIndex].correctAnswer===STORE[questionIndex].answers[0] ? 'correct-answer' : '' }" required></input> 
+        </div>
+        <div class="questionStyle">
+          <label for= "input2" >${STORE [questionIndex].answers [1]}</label>
+          <input id= "input2" type= "radio" value = "${STORE [questionIndex].answers [1]}" name= "answer" class=" ${STORE[questionIndex].correctAnswer===STORE[questionIndex].answers[1] ? 'correct-answer' : '' }" required></input>
+        </div>
+    
+        <div class="questionStyle">
+          <label for= "input3" >${STORE [questionIndex].answers [2]}</label>
+          <input id= "input3" type= "radio" value = "${STORE [questionIndex].answers [2]}" name= "answer" class=" ${STORE[questionIndex].correctAnswer===STORE[questionIndex].answers[2] ? 'correct-answer' : '' }" required></input>
+        </div>
 
-          <label for= "input2" >Disney Answer Selections</label>
-          <input id= "input2" type= "radio" name= "answer" ></input>
-
-          <label for= "input3" >Disney Answer Selections</label>
-          <input id= "input3" type= "radio" name= "answer" ></input>
-
-          <label for= "input4" >Disney Answer Selections</label>
-          <input id= "input4" type= "radio" name= "answer" ></input>
+        <div class="questionStyle">
+          <label for= "input4" >${STORE [questionIndex].answers [3]}</label>
+          <input id= "input4" type= "radio" value = "${STORE [questionIndex].answers [3]}" name= "answer" class=" ${STORE[questionIndex].correctAnswer===STORE[questionIndex].answers[3] ? 'correct-answer' : '' }" required></input>
+        </div>
 
           <br>
 
-          <button type= "button"> Next </button>
+          <button type= "submit"> Next </button>
       </form>
       
     </main>`)
@@ -74,17 +84,38 @@ function renderQuestionPage(){
 
 
 function handleFeedbackPage(){
+    event.preventDefault();
+    //let questionIndex = 1;
     $('form').unbind('submit')
     $('form').submit(function(){
-        questionIndex ++
-        renderQuestionPage()
-        handleQuestionPage()
+        console.log (questionIndex);
+        if (questionIndex >= STORE.length - 1){
+            renderFinalPage();
+            console.log('renderFinalPage');
+            handleFinalPage();
+        } 
+        else{
+            questionIndex ++
+            renderQuestionPage()
+            handleQuestionPage()
+        }
     })
 }//change CSS to render 
 
 function handleQuestionPage(){
+    event.preventDefault();
     $('form').submit(function(){
         handleFeedbackPage()
+        let selected = $('input:checked');
+        let answer = selected.val();
+        let correctAnswer = `${STORE[questionIndex].correctAnswer}`;
+        if (answer === correctAnswer) {
+          selected.parent().addClass('correct');
+          score++
+        } else {
+          selected.parent().addClass('wrong');
+          $('.correct-answer').parent().addClass('correct');
+        }
     })
 
 }
@@ -107,18 +138,41 @@ function renderFinalPage(){
     </div>
     <div class="col-8">
       <ul>
-        <li>Question: <span class="questionNumber">0</span>/10</li>
-        <li>Score: <span class="score">0</span></li>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Score: <span class="score">${score}</span></li>
       </ul>
     </div>
   </header>
   <main role="main">
           <div class="beginQuiz">
             <h1>Finish Page header/Score </h1>
-            <h2>Results Message "Betterluck next time/ Great Job!"</h2>
-            <button type="button" class="startButton">Reload quiz button</button>
+            <h2>Results Message "Better luck next time/ Great Job!"</h2>
+            <button type="button" class="startButton">Revisit the Magic</button>
           </div>
         </main>`)
+
 }
 
-//advancing from question to question
+function handleFinalPage(){
+    $(".startButton").click(function (){
+        setUpQuiz()
+        /*if (score >= 8) {
+          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You Are a Disney Master! </h3> <p>You got ${score} / 10</p><p>You're ready to plan your backpacking trip!</p><button class="restartButton">Restart Quiz</button></div>`);
+        } else if (score < 8 && score >= 5) {
+          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You're an Apprentice!</h3> <p>You got ${score} / 10</p><p>Bone up on your backpacking knowledge a little more and you'll be ready to go!</p><button class="restartButton">Restart Quiz</button></div>`);
+        } else {
+          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You're still a Disney Student</h3> <p>You got ${score} / 10</p><p>With more camping and outdoor experience you'll be able to pass this quiz in no time</p><button class="restartButton">Restart Quiz</button></div>`);
+        }
+      }*/
+     
+    })
+}
+
+
+
+//advancing from question to question (update values from store given current question index)
+//put score in html. put answer in html
+//function for incrementing score (1. if user is correct 2. if user is wrong)
+//feedback page (changing CSS to show correct and right/wrong)
+//function for restarting quiz OK
+//input:checked inside selector .val to get value of answer compared to submitted answer

@@ -1,3 +1,103 @@
 label{
     display: block;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Metrophobic', sans-serif;
+    background-color: white;
+    color: #363946;
+    display: block;
+    text-align: center;
+    box-shadow: 0.4em 0 0 #e11937, -0.4em 0 0 #e11937;
+    color: black;
+    font-weight: bold;
+}
+
+h1{
+    text-align: center;
+    display: inline;
+    background-color: #e11937;
+    box-shadow: 0.4em 0 0 #e11937, -0.4em 0 0 #e11937;
+    color: #fff;
+    
+}
+
+main{
+    display: block;
+    text-align: center;
+    margin: auto;
+    
+   
+}
+
+.questionStyle{
+    display: inline-block;
+    width: 40%;
+    box-sizing: border-box;
+    min-height: 200px;
+    vertical-align: top;
+}
+
+button, .questionStyle{
+    padding: 20px;
+    border: none;
+    background-color: rgb(252, 253, 253);
+    color: black;
+    border: red 1px solid;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 40px
+}
+button:hover, button:focus, .questionStyle:hover, .questionStyle:focus{
+    background-color: #363946;
+    color: #ebca52
+}
+
+/*input[type=radio]{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}*/
+
+
+
+@media screen and (max-width: 1190px) {
+        .questionAnswerForm,
+        .quizStart {
+            width: 80%;
+            margin: auto;
+        }
+}
+@media screen and (max-width: 768px) {
+        .logo {
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: auto;
+        }    
+}
+
+
+
+
+.wrong {
+    background-color: rgba(248, 90, 90, 0.815);
+    border: 5px solid black ;
+
+}
+
+.correct{
+    background-color: teal;
+    border: 5px solid black;
+}
+
+.disneyStudent{
+    background: red;
+}
