@@ -153,10 +153,11 @@ function renderFinalPage(){
          <p>You got ${score} / 10</p>
          <p>Go on and conduct the stars!</p>
          <button type="button" class="startButton">Revisit the Magic</button>
-         </main>`);
+         </div>
+    </main>`);
     }   
     else if (score < 9 && score >= 5) {
-    $(".#root").html(`<header role="banner">
+    $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
         <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
@@ -175,7 +176,8 @@ function renderFinalPage(){
          <p>You got ${score} / 10</p>
          <p>You might need a few brooms to help out, but you're almost there!</p>
          <button type="button" class="startButton">Revisit the Magic</button>
-         </main>`);
+         </div>
+   </main>`);
     }   
     else {
     $("#root").html(`<header role="banner">
@@ -192,12 +194,13 @@ function renderFinalPage(){
     </div>
   </header>
   <main role="main">
-      <div class="beginQuiz>
+      <div class="beginQuiz">
         <h1>You're still a Disney Student</h1> 
         <p>You got ${score} / 10</p>
         <p>A few more trips to Disneyland is never a bad idea</p>
         <button type="button" class="startButton">Revisit the Magic</button>
-        </main>`);
+        </div>
+   </main>`);
     }
   }
 
