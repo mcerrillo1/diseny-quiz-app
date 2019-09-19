@@ -8,8 +8,8 @@ label{
 }
 body {
     font-family: 'Metrophobic', sans-serif;
-    background-color: white;
-    color: #363946;
+    background: url('https://miro.medium.com/focal/1200/900/43/41/1*vCd44VcaI5MC2Bmda4QacQ.jpeg');
+    color: white;
     display: block;
     text-align: center;
     box-shadow: 0.4em 0 0 #e11937, -0.4em 0 0 #e11937;
@@ -17,14 +17,27 @@ body {
     font-weight: bold;
 }
 
+li{
+    color: white;
+}
+
 h1{
     text-align: center;
     display: inline;
-    background-color: #e11937;
-    box-shadow: 0.4em 0 0 #e11937, -0.4em 0 0 #e11937;
+    background-color: rgb(3, 3, 139);
+    box-shadow: 0.4em 0 0 rgb(3, 3, 139), -0.4em 0 0 rgb(3, 3, 139);
     color: #fff;
     
 }
+
+p{
+    background-color: rgb(3, 3, 139);
+    box-shadow: 0.4em 0 0 rgb(3, 3, 139), -0.4em 0 0 rgb(3, 3, 139);
+    color: #fff;
+    width: 40%;
+    font-size: 20px;
+}
+
 
 main{
     display: block;
@@ -46,7 +59,7 @@ button, .questionStyle{
     padding: 20px;
     border: none;
     background-color: rgb(252, 253, 253);
-    color: black;
+    color:rgb(3, 3, 139);
     border: red 1px solid;
     font-size: 18px;
     text-transform: uppercase;
@@ -56,8 +69,8 @@ button, .questionStyle{
     margin-top: 40px
 }
 button:hover, button:focus, .questionStyle:hover, .questionStyle:focus{
-    background-color: #363946;
-    color: #ebca52
+    background-color: rgb(3, 3, 139);
+    color: white;
 }
 
 /*input[type=radio]{
@@ -88,16 +101,11 @@ button:hover, button:focus, .questionStyle:hover, .questionStyle:focus{
 
 
 .wrong {
-    background-color: rgba(248, 90, 90, 0.815);
-    border: 5px solid black ;
-
+    background-color: rgba(252, 29, 29, 0.815);
+    border: 5px solid black ; 
 }
 
 .correct{
-    background-color: teal;
+    background-color:rgb(40, 211, 6);
     border: 5px solid black;
-}
-
-.disneyStudent{
-    background: red;
 }

@@ -30,6 +30,7 @@ function renderLandingPage(){
 
 function setUpQuiz (){
     questionIndex = 0;
+    score = 0;
     renderLandingPage ()
     handleLandingPage()
 }
@@ -85,13 +86,13 @@ function renderQuestionPage(){
 
 function handleFeedbackPage(){
     event.preventDefault();
-    //let questionIndex = 1;
     $('form').unbind('submit')
     $('form').submit(function(){
         console.log (questionIndex);
         if (questionIndex >= STORE.length - 1){
             renderFinalPage();
-            console.log('renderFinalPage');
+            //scoreResults();
+            console.log('renderFinalPAge');
             handleFinalPage();
         } 
         else{
@@ -100,7 +101,7 @@ function handleFeedbackPage(){
             handleQuestionPage()
         }
     })
-}//change CSS to render 
+}
 
 function handleQuestionPage(){
     event.preventDefault();
@@ -112,7 +113,9 @@ function handleQuestionPage(){
         if (answer === correctAnswer) {
           selected.parent().addClass('correct');
           score++
-        } else {
+        } 
+        
+        else {
           selected.parent().addClass('wrong');
           $('.correct-answer').parent().addClass('correct');
         }
@@ -130,6 +133,76 @@ function handleLandingPage(){
 }
 
 function renderFinalPage(){
+    if (score >= 9) {
+    $("#root").html(`<header role="banner">
+    <div class="col-4">
+      <a href="index.html">
+        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+      </a>
+    </div>
+    <div class="col-8">
+      <ul>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Score: <span class="score">${score}</span></li>
+      </ul>
+    </div>
+  </header>
+  <main role="main">
+      <div class="beginQuiz">
+        <h1>You Are a Disney Master! </h1>
+         <p>You got ${score} / 10</p>
+         <p>Go on and conduct the stars!</p>
+         <button type="button" class="startButton">Revisit the Magic</button>
+         </main>`);
+    }   
+    else if (score < 9 && score >= 5) {
+    $(".#root").html(`<header role="banner">
+    <div class="col-4">
+      <a href="index.html">
+        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+      </a>
+    </div>
+    <div class="col-8">
+      <ul>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Score: <span class="score">${score}</span></li>
+      </ul>
+    </div>
+  </header>
+  <main role="main">
+      <div class="beginQuiz">
+        <h1>You're an Apprentice!</h1>
+         <p>You got ${score} / 10</p>
+         <p>You might need a few brooms to help out, but you're almost there!</p>
+         <button type="button" class="startButton">Revisit the Magic</button>
+         </main>`);
+    }   
+    else {
+    $("#root").html(`<header role="banner">
+    <div class="col-4">
+      <a href="index.html">
+        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+      </a>
+    </div>
+    <div class="col-8">
+      <ul>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Score: <span class="score">${score}</span></li>
+      </ul>
+    </div>
+  </header>
+  <main role="main">
+      <div class="beginQuiz>
+        <h1>You're still a Disney Student</h1> 
+        <p>You got ${score} / 10</p>
+        <p>A few more trips to Disneyland is never a bad idea</p>
+        <button type="button" class="startButton">Revisit the Magic</button>
+        </main>`);
+    }
+  }
+
+
+/*function renderFinalPage(){
     $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
@@ -151,20 +224,11 @@ function renderFinalPage(){
           </div>
         </main>`)
 
-}
+}*/
 
 function handleFinalPage(){
     $(".startButton").click(function (){
         setUpQuiz()
-        /*if (score >= 8) {
-          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You Are a Disney Master! </h3> <p>You got ${score} / 10</p><p>You're ready to plan your backpacking trip!</p><button class="restartButton">Restart Quiz</button></div>`);
-        } else if (score < 8 && score >= 5) {
-          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You're an Apprentice!</h3> <p>You got ${score} / 10</p><p>Bone up on your backpacking knowledge a little more and you'll be ready to go!</p><button class="restartButton">Restart Quiz</button></div>`);
-        } else {
-          $('.questionAnswerForm').html(`<div class="results correctFeedback"><h3>You're still a Disney Student</h3> <p>You got ${score} / 10</p><p>With more camping and outdoor experience you'll be able to pass this quiz in no time</p><button class="restartButton">Restart Quiz</button></div>`);
-        }
-      }*/
-     
     })
 }
 
@@ -175,4 +239,4 @@ function handleFinalPage(){
 //function for incrementing score (1. if user is correct 2. if user is wrong)
 //feedback page (changing CSS to show correct and right/wrong)
 //function for restarting quiz OK
-//input:checked inside selector .val to get value of answer compared to submitted answer
+//input:checked inside selector .val to get value of answer compared to submitted
