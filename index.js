@@ -6,12 +6,12 @@ function renderLandingPage(){
     $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
-        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+        
       </a>
     </div>
     <div class="col-8">
       <ul>
-        <li>Question: <span class="questionNumber">${questionIndex}</span>/10</li>
+        <li>Question: <span class="questionNumber">${questionIndex}</span>/5</li>
         <li>Score: <span class="score"> ${score}</span></li>
       </ul>
     </div>
@@ -19,9 +19,9 @@ function renderLandingPage(){
   <main role="main">
     <div class="beginQuiz">
     <div>
-      <h1>Are you a Disney Master?</h1>
+      <h1>Are you a Gentleman?</h1>
     </div>
-      <button type="button" class="startButton">Let the Magic Begin!</button>
+      <button type="button" class="startButton"> Begin!</button>
     </div>
     <div class="questionAnswerForm"></div>
   </main>`)
@@ -40,12 +40,12 @@ function renderQuestionPage(){
     $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
-        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+        
       </a>
     </div>
     <div class="col-8">
       <ul>
-        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/10</li>
+        <li>Question: <span class="questionNumber">${questionIndex + 1}</span>/5</li>
         <li>Score: <span class="score">${score}</span></li>
       </ul>
     </div>
@@ -133,11 +133,11 @@ function handleLandingPage(){
 }
 
 function renderFinalPage(){
-    if (score >= 9) {
+    if (score >= 5) {
     $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
-        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+        
       </a>
     </div>
     <div class="col-8">
@@ -149,18 +149,18 @@ function renderFinalPage(){
   </header>
   <main role="main">
       <div class="beginQuiz">
-        <h1>You Are a Disney Master! </h1>
-         <p>You got ${score} / 10</p>
-         <p>Go on and conduct the stars!</p>
+        <h1>You Are a Gentleman! </h1>
+         <p>You got ${score} / 5</p>
+         <p>Go on and run the Jungle!</p>
          <button type="button" class="startButton">Revisit the Magic</button>
          </div>
     </main>`);
     }   
-    else if (score < 9 && score >= 5) {
+    else if (score < 4 && score >= 3) {
     $("#root").html(`<header role="banner">
     <div class="col-4">
       <a href="index.html">
-        <img class="logo" src=" disneyIcon.png" alt="disney icon"/>
+        
       </a>
     </div>
     <div class="col-8">
@@ -172,9 +172,9 @@ function renderFinalPage(){
   </header>
   <main role="main">
       <div class="beginQuiz">
-        <h1>You're an Apprentice!</h1>
-         <p>You got ${score} / 10</p>
-         <p>You might need a few brooms to help out, but you're almost there!</p>
+        <h1>You're almost there!</h1>
+         <p>You got ${score} / 5</p>
+         <p>You might need to work on a few manners!</p>
          <button type="button" class="startButton">Revisit the Magic</button>
          </div>
    </main>`);
@@ -195,9 +195,9 @@ function renderFinalPage(){
   </header>
   <main role="main">
       <div class="beginQuiz">
-        <h1>You're still a Disney Student</h1> 
-        <p>You got ${score} / 10</p>
-        <p>A few more trips to Disneyland is never a bad idea</p>
+        <h1>You're....hmmmmm</h1> 
+        <p>You got ${score} / 5</p>
+        <p>Get out of here</p>
         <button type="button" class="startButton">Revisit the Magic</button>
         </div>
    </main>`);
